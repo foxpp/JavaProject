@@ -1,12 +1,8 @@
 package com.generic.simple;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-
-import com.generic.testbeans.FooMan;
 
 public class SelfTest {
 	
@@ -63,9 +59,10 @@ public class SelfTest {
 	}
 	
 	public static void main(String[] args) {
-		printClassInfo(SelfTest.class);
+	/*	printClassInfo(SelfTest.class);
 		printClassInfo(ArrayList.class);
 		printClassInfo(Array.class);
-		printClassInfo(FooMan.class);
+		printClassInfo(FooMan.class);*/
+		printClassInfo(Class.class);
 	}
 }
