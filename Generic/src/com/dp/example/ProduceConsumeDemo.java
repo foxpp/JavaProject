@@ -13,9 +13,9 @@ class Producer implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (ProduceConsumeDemo.sharedqueue.size() < 50) {
+			if (ProduceConsumeDemo.SHARED_QUEUE.size() < 50) {
 				int product = random.nextInt();
-				ProduceConsumeDemo.sharedqueue.add(product);
+				ProduceConsumeDemo.SHARED_QUEUE.add(product);
 				System.out.println("producer: "+ product);
 			}			
 		}
@@ -32,10 +32,10 @@ class Consumer implements Runnable {
 	void consume() {
 		while (true) {
 			
-			if (!ProduceConsumeDemo.sharedqueue.isEmpty()) {
+			if (!ProduceConsumeDemo.SHARED_QUEUE.isEmpty()) {
 				try {
 					Thread.sleep(1000);
-					System.out.println("consumer: " + Thread.currentThread().getName() + " - "+ ProduceConsumeDemo.sharedqueue.take().toString());
+					System.out.println("consumer: " + Thread.currentThread().getName() + " - "+ ProduceConsumeDemo.SHARED_QUEUE.take().toString());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -50,9 +50,9 @@ class Consumer implements Runnable {
 }
 
 public class ProduceConsumeDemo {
-	final static int SIZE = 50;
-	public static BlockingQueue<Integer> sharedqueue = new ArrayBlockingQueue<Integer>(
-			SIZE);
+	final static int MAX_SIZE = 50;
+	public static BlockingQueue<Integer> SHARED_QUEUE = new ArrayBlockingQueue<Integer>(
+			MAX_SIZE);
 	public static void main(String[] args) {
 		
 		Thread producer =  new Thread(new Producer());
